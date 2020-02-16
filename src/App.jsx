@@ -25,13 +25,13 @@ const useStyles = makeStyles(theme => ({
   left: {
     marginRight: '50%',
     overflowWrap: 'break-word',
-    paddingRight: 10,
+    paddingRight: 24,
     textAlign: 'right',
   },
   right: {
     marginLeft: '50%',
     maxWidth: '50%',
-    paddingLeft: 10,
+    paddingLeft: 24,
     overflowWrap: 'break-word',
     textAlign: 'left',
   },
@@ -43,8 +43,13 @@ export default function App() {
   const [messages, setMessages] = React.useState([]);
   const leftRef = React.useRef();
   const rightRef = React.useRef();
+  const [placeHolder, setPlaceHolder] = React.useState('you');
 
-  const onMessage = left => text => {
+  const onTextEntered = () => {
+    setPlaceHolder(undefined);
+  };
+
+  const handleMessage = left => text => {
     if (text.length) {
       setMessages([{ text, time: Date.now(), left }, ...messages]);
     }
@@ -62,8 +67,19 @@ export default function App() {
   return (
     <div className={classes.root}>
       <div className={classes.textWrap}>
-        <Input ref={leftRef} left onFlush={onMessage(true)} />
-        <Input ref={rightRef} onFlush={onMessage(false)} />
+        <Input
+          left
+          ref={leftRef}
+          placeholder={placeHolder}
+          onChange={onTextEntered}
+          onFlush={handleMessage(true)}
+        />
+        <Input
+          ref={rightRef}
+          placeholder={placeHolder}
+          onChange={onTextEntered}
+          onFlush={handleMessage(false)}
+        />
       </div>
       <div className={classes.messages}>
         {messages.map(({ text, time, left }) => (

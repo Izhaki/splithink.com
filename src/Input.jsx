@@ -1,26 +1,30 @@
 import React from 'react';
+import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
 
 const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
-    padding: 10,
-    paddingTop: 0,
+    padding: 0,
     fontSize: 16,
     fontFamily: theme.typography.fontFamily,
   },
+  input: {
+    padding: [[6, 18]],
+    margin: 6,
+    borderRadius: 18,
+    backgroundColor: '#f1f3f4',
+  },
   left: {
     textAlign: 'right',
-    paddingTop: 0,
   },
   right: {
     textAlign: 'left',
-    paddingTop: 0,
   },
 }));
 
-const Input = React.forwardRef(({ left = false, onFlush }, ref) => {
+const Input = React.forwardRef(({ left = false, onChange, onFlush, placeholder }, ref) => {
   const classes = useStyles();
 
   const [text, setText] = React.useState('');
@@ -34,6 +38,9 @@ const Input = React.forwardRef(({ left = false, onFlush }, ref) => {
 
   const handleChange = event => {
     setText(event.target.value);
+    if (onChange) {
+      onChange(event);
+    }
   };
 
   return (
@@ -42,11 +49,12 @@ const Input = React.forwardRef(({ left = false, onFlush }, ref) => {
       inputProps={{ 'aria-label': left ? 'left' : 'right' }}
       classes={{
         root: classes.root,
-        input: left ? classes.left : classes.right,
+        input: clsx(classes.input, left ? classes.left : classes.right),
       }}
       onKeyPress={handleKeyPress}
       onChange={handleChange}
       value={text}
+      placeholder={placeholder}
     />
   );
 });
