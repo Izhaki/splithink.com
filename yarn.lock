@@ -5450,6 +5450,11 @@ react-is@^16.7.0, react-is@^16.8.0, react-is@^16.8.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.12.0.tgz#2cc0fe0fba742d97fd527c42a13bec4eeb06241c"
   integrity sha512-rPCkf/mWBtKc97aLL9/txD8DZdemK0vkA3JMLShjlJB3Pj3s+lpf1KaBzMfQrAmhMQB0n1cU/SUGgKKBCe837Q==
 
+react-scrollable-feed@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/react-scrollable-feed/-/react-scrollable-feed-1.1.2.tgz#739a051b2c02cede6bd16d6c3d9a285a52ddc5cf"
+  integrity sha512-fe9hkVO8pMPQCtkSW9O0+9uhgSbF1tr81T6SXr9N0M8kLnXOiw34pp8PuAFPMsZEPzmwycerfUPDu7Jjv/Y0hg==
+
 react-transition-group@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-4.3.0.tgz#fea832e386cf8796c58b61874a3319704f5ce683"

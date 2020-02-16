@@ -1,10 +1,11 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import ScrollableFeed from 'react-scrollable-feed';
 import Input from './Input';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    minHeight: '100vh',
+    height: '100vh',
     display: 'flex',
     flexDirection: 'column-reverse',
     fontFamily: theme.typography.fontFamily,
@@ -14,13 +15,10 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
   },
   messages: {
-    flex: 1,
-    display: 'flex',
-    flexDirection: 'column-reverse',
-    padding: 10,
-    paddingBottom: 0,
+    // ScrollableFeed sets this to 'inherit', which means initial messages
+    // on top appear. Setting to 'auto' will position them at the bottom.
+    height: 'auto',
     fontSize: 16,
-    pointerEvents: 'none',
   },
   left: {
     marginRight: '50%',
@@ -51,7 +49,8 @@ export default function App() {
 
   const handleMessage = left => text => {
     if (text.length) {
-      setMessages([{ text, time: Date.now(), left }, ...messages]);
+      const message = { text, time: Date.now(), left };
+      setMessages([...messages, message]);
     }
     if (left) {
       rightRef.current.focus();
@@ -81,13 +80,13 @@ export default function App() {
           onFlush={handleMessage(false)}
         />
       </div>
-      <div className={classes.messages}>
+      <ScrollableFeed className={classes.messages} forceScroll>
         {messages.map(({ text, time, left }) => (
           <div key={time} className={left ? classes.left : classes.right}>
             {text}
           </div>
         ))}
-      </div>
+      </ScrollableFeed>
     </div>
   );
 }
