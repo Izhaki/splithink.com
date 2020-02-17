@@ -1,11 +1,11 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import ScrollableFeed from 'react-scrollable-feed';
+import FullHeight from './FullHeight';
 import Input from './Input';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    height: '100vh',
     display: 'flex',
     flexDirection: 'column-reverse',
     fontFamily: theme.typography.fontFamily,
@@ -64,7 +64,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className={classes.root}>
+    <FullHeight className={classes.root}>
       <div className={classes.textWrap}>
         <Input
           left
@@ -87,6 +87,6 @@ export default function App() {
           </div>
         ))}
       </ScrollableFeed>
-    </div>
+    </FullHeight>
   );
 }
