@@ -12,8 +12,7 @@ const useStyles = makeStyles(theme => ({
   },
   input: {
     padding: [[6, 18]],
-    margin: 6,
-    borderRadius: 18,
+    borderRadius: 24,
     backgroundColor: '#f1f3f4',
   },
   left: {

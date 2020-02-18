@@ -20,6 +20,11 @@ const theme = createMuiTheme({
       default: '#fff',
     },
   },
+  props: {
+    MuiButtonBase: {
+      disableRipple: true,
+    },
+  },
 });
 
 export default theme;

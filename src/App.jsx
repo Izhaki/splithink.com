@@ -1,24 +1,28 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import clsx from 'clsx';
 import ScrollableFeed from 'react-scrollable-feed';
 import FullHeight from './FullHeight';
-import Input from './Input';
+import FlexSponge from './FlexSponge';
+import InBar from './InBar';
+import Menu from './Menu';
 
 const useStyles = makeStyles(theme => ({
   root: {
+    fontFamily: theme.typography.fontFamily,
+  },
+  bottomUp: {
     display: 'flex',
     flexDirection: 'column-reverse',
-    fontFamily: theme.typography.fontFamily,
-    background: `linear-gradient(#ddd, #ccc) no-repeat center/1px 100%`,
-  },
-  textWrap: {
-    display: 'flex',
   },
   messages: {
     // ScrollableFeed sets this to 'inherit', which means initial messages
     // on top appear. Setting to 'auto' will position them at the bottom.
     height: 'auto',
     fontSize: 16,
+  },
+  topPanel: {
+    background: `linear-gradient(#ddd, #ccc) no-repeat center/1px 100%`,
   },
   left: {
     marginRight: '50%',
@@ -39,54 +43,33 @@ export default function App() {
   const classes = useStyles();
 
   const [messages, setMessages] = React.useState([]);
-  const leftRef = React.useRef();
-  const rightRef = React.useRef();
-  const [placeHolder, setPlaceHolder] = React.useState('you');
+  const [menuOpen, setMenuOpen] = React.useState(false);
 
-  const onTextEntered = () => {
-    setPlaceHolder(undefined);
+  const handleMenuClick = () => {
+    setMenuOpen(!menuOpen);
   };
 
-  const handleMessage = left => text => {
-    if (text.length) {
-      const message = { text, time: Date.now(), left };
-      setMessages([...messages, message]);
-    }
-    if (left) {
-      rightRef.current.focus();
-    } else {
-      leftRef.current.focus();
-    }
+  const handleMessage = (text, left) => {
+    const message = { text, time: Date.now(), left };
+    setMessages([...messages, message]);
   };
-
-  React.useEffect(() => {
-    leftRef.current.focus();
-  }, []);
 
   return (
-    <FullHeight className={classes.root}>
-      <div className={classes.textWrap}>
-        <Input
-          left
-          ref={leftRef}
-          placeholder={placeHolder}
-          onChange={onTextEntered}
-          onFlush={handleMessage(true)}
-        />
-        <Input
-          ref={rightRef}
-          placeholder={placeHolder}
-          onChange={onTextEntered}
-          onFlush={handleMessage(false)}
-        />
-      </div>
-      <ScrollableFeed className={classes.messages} forceScroll>
-        {messages.map(({ text, time, left }) => (
-          <div key={time} className={left ? classes.left : classes.right}>
-            {text}
-          </div>
-        ))}
-      </ScrollableFeed>
+    <FullHeight className={clsx(classes.root, classes.bottomUp)}>
+      <FlexSponge expanded={menuOpen}>
+        <Menu />
+      </FlexSponge>
+      <InBar onMessage={handleMessage} onMenuClick={handleMenuClick} />
+
+      <FlexSponge expanded={!menuOpen} className={clsx(classes.topPanel, classes.bottomUp)}>
+        <ScrollableFeed className={classes.messages} forceScroll>
+          {messages.map(({ text, time, left }) => (
+            <div key={time} className={left ? classes.left : classes.right}>
+              {text}
+            </div>
+          ))}
+        </ScrollableFeed>
+      </FlexSponge>
     </FullHeight>
   );
 }
