@@ -25,7 +25,7 @@ export default function Dish({ title, blurb, description }) {
   const classes = useStyles();
 
   return (
-    <Grid item xs={6}>
+    <Grid item xs={12} sm={6}>
       <Card className={classes.root} variant="outlined">
         <CardContent>
           <Typography variant="h5" component="h2">
