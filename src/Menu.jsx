@@ -1,20 +1,43 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import Dish from './Dish';
+import dishes from './dishes';
 
 const useStyles = makeStyles({
   root: {
     width: '100%',
-    borderTop: '10px solid #ddd',
-    borderBottom: '10px solid #ddd',
-    padding: [[20, 0]],
+    borderTop: '20px solid #333',
+    borderBottom: '20px solid #333',
+    padding: [[4, 0]],
   },
   header: {
-    borderTop: '4px solid #ddd',
-    borderBottom: '4px solid #ddd',
+    borderTop: '4px solid #333',
+    borderBottom: '4px solid #333',
+    padding: [[0, 20]],
+  },
+  section: {
     padding: 20,
   },
+  sectionTitle: {
+    textAlign: 'center',
+  },
 });
+
+const Section = ({ title, children }) => {
+  const classes = useStyles();
+  return (
+    <>
+      <Typography variant="h2" component="h3" className={classes.sectionTitle}>
+        {title}
+      </Typography>
+      <Grid container spacing={3}>
+        {children}
+      </Grid>
+    </>
+  );
+};
 
 export default function Types() {
   const classes = useStyles();
@@ -26,8 +49,28 @@ export default function Types() {
           Menu
         </Typography>
         <Typography variant="body1">
-          <b>Allergy advice: </b>Nothing is saved.
+          <b>Allergy advice: </b>We <i>do not</i> save anything you write.
         </Typography>
+      </div>
+      <div className={classes.section}>
+        <Section title="Starters">
+          <Dish {...dishes.alterEgo} />
+          <Dish {...dishes.mindTheGap} />
+        </Section>
+        <Section title="Breakfast">
+          <Dish {...dishes.dosdonts} />
+        </Section>
+        <Section title="Lunch">
+          <Dish {...dishes.obama} />
+          <Dish {...dishes.empathy} />
+          <Dish {...dishes.betterSelf} />
+          <Dish {...dishes.devil} />
+          <Dish {...dishes.wolf} />
+          <Dish {...dishes.forAgainst} />
+        </Section>
+        <Section title="Dinner">
+          <Dish {...dishes.chatdelune} />
+        </Section>
       </div>
     </div>
   );
