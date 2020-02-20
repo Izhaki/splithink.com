@@ -58,18 +58,20 @@ export default function Types() {
           <Dish {...dishes.mindTheGap} />
         </Section>
         <Section title="Breakfast">
-          <Dish {...dishes.dosdonts} />
+          <Dish {...dishes.dosdonts} loner />
+        </Section>
+        <Section title="Brunch">
+          <Dish {...dishes.wolf} />
+          <Dish {...dishes.forAgainst} />
         </Section>
         <Section title="Lunch">
           <Dish {...dishes.obama} />
           <Dish {...dishes.empathy} />
           <Dish {...dishes.betterSelf} />
           <Dish {...dishes.devil} />
-          <Dish {...dishes.wolf} />
-          <Dish {...dishes.forAgainst} />
         </Section>
         <Section title="Dinner">
-          <Dish {...dishes.chatdelune} />
+          <Dish {...dishes.chatdelune} loner />
         </Section>
       </div>
     </div>
