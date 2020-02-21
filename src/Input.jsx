@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Input = React.forwardRef(({ left = false, onChange, onFlush, placeholder }, ref) => {
+const Input = React.forwardRef(({ left = false, onChange, onFlush }, ref) => {
   const classes = useStyles();
 
   const [text, setText] = React.useState('');
@@ -53,7 +53,6 @@ const Input = React.forwardRef(({ left = false, onChange, onFlush, placeholder }
       onKeyPress={handleKeyPress}
       onChange={handleChange}
       value={text}
-      placeholder={placeholder}
     />
   );
 });

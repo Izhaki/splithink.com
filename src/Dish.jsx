@@ -32,8 +32,10 @@ const useStyles = makeStyles(theme => ({
     flex: 1,
   },
   left: {
-    //    borderRight: '1px solid #ddd',
     textAlign: 'right',
+  },
+  comment: {
+    marginTop: theme.spacing(1),
   },
 }));
 
@@ -65,7 +67,7 @@ export default function Dish({ title, blurb, description, left, right, comment, 
   );
 
   const Comment = ({ children }) => (
-    <Typography variant="body2" component="p" align="center">
+    <Typography variant="body2" component="p" align="center" className={classes.comment}>
       {children}
     </Typography>
   );

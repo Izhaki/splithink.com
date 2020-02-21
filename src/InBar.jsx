@@ -8,7 +8,7 @@ const useStyles = makeStyles({
   inBar: {
     display: 'flex',
     padding: 6,
-    background: `linear-gradient(#ddd, #ccc) no-repeat center/1px 100%`,
+    // background: `linear-gradient(#ddd, #ccc) no-repeat center/1px 100%`,
   },
   menuButton: {
     backgroundColor: '#f1f3f4',
@@ -20,16 +20,11 @@ const useStyles = makeStyles({
   },
 });
 
-export default function InBar({ onMessage, onMenuClick }) {
+export default function InBar({ onMessage, onMenuClick, onChar }) {
   const classes = useStyles();
 
   const leftRef = React.useRef();
   const rightRef = React.useRef();
-  const [placeHolder, setPlaceHolder] = React.useState('you');
-
-  const onTextEntered = () => {
-    setPlaceHolder(undefined);
-  };
 
   const handleMessage = left => text => {
     if (text.length) {
@@ -48,22 +43,13 @@ export default function InBar({ onMessage, onMenuClick }) {
 
   return (
     <div className={classes.inBar}>
-      <Input
-        left
-        ref={leftRef}
-        placeholder={placeHolder}
-        onChange={onTextEntered}
-        onFlush={handleMessage(true)}
-      />
+      <Input left ref={leftRef} onChange={onChar} onFlush={handleMessage(true)} />
+
       <IconButton className={classes.menuButton} onClick={onMenuClick} aria-label="menu">
         <MenuIcon fontSize="small" />
       </IconButton>
-      <Input
-        ref={rightRef}
-        placeholder={placeHolder}
-        onChange={onTextEntered}
-        onFlush={handleMessage(false)}
-      />
+
+      <Input ref={rightRef} onChange={onChar} onFlush={handleMessage(false)} />
     </div>
   );
 }

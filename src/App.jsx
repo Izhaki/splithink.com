@@ -6,6 +6,7 @@ import FullHeight from './FullHeight';
 import FlexSponge from './FlexSponge';
 import InBar from './InBar';
 import Menu from './Menu';
+import { useTour } from './tour';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -22,7 +23,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: 16,
   },
   topPanel: {
-    background: `linear-gradient(#ddd, #ccc) no-repeat center/1px 100%`,
+    // background: `linear-gradient(#ddd, #ccc) no-repeat center/1px 100%`,
   },
   left: {
     marginRight: '50%',
@@ -45,6 +46,8 @@ export default function App() {
   const [messages, setMessages] = React.useState([]);
   const [menuOpen, setMenuOpen] = React.useState(false);
 
+  const { tour, notifyTour } = useTour();
+
   const handleMenuClick = () => {
     setMenuOpen(!menuOpen);
   };
@@ -52,6 +55,11 @@ export default function App() {
   const handleMessage = (text, left) => {
     const message = { text, time: Date.now(), left };
     setMessages([...messages, message]);
+    notifyTour('message');
+  };
+
+  const handleChar = () => {
+    notifyTour('char');
   };
 
   return (
@@ -59,8 +67,8 @@ export default function App() {
       <FlexSponge expanded={menuOpen}>
         <Menu />
       </FlexSponge>
-      <InBar onMessage={handleMessage} onMenuClick={handleMenuClick} />
-
+      <InBar onChar={handleChar} onMessage={handleMessage} onMenuClick={handleMenuClick} />
+      {tour}
       <FlexSponge expanded={!menuOpen} className={clsx(classes.topPanel, classes.bottomUp)}>
         <ScrollableFeed className={classes.messages} forceScroll>
           {messages.map(({ text, time, left }) => (
