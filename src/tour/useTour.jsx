@@ -2,17 +2,25 @@ import React from 'react';
 import cookies from 'js-cookie';
 import Tour from './Tour';
 
-const tourCompeleted = Boolean(cookies.get('tourCompeleted'));
-const initialTourStep = tourCompeleted ? Infinity : 0;
+const COMPLETED = Infinity;
 
 export default function useTour() {
-  const [tourStep, setTourStep] = React.useState(initialTourStep);
+  const [tourStep, setTourStep] = React.useState(COMPLETED);
+
+  React.useEffect(() => {
+    const tourCompeleted = Boolean(cookies.get('tourCompeleted'));
+    if (!tourCompeleted) {
+      setTourStep(0);
+    }
+  }, []);
 
   const bumpTourStep = () => {
     if (tourStep === 4) {
       cookies.set('tourCompeleted', true);
+      setTourStep(COMPLETED);
+    } else {
+      setTourStep(tourStep + 1);
     }
-    setTourStep(tourStep + 1);
   };
 
   const notifyTour = eventType => {
@@ -33,5 +41,9 @@ export default function useTour() {
     }
   };
 
-  return { bumpTourStep, notifyTour, tour: tourCompeleted ? null : <Tour step={tourStep} /> };
+  return {
+    bumpTourStep,
+    notifyTour,
+    tour: tourStep !== COMPLETED ? <Tour step={tourStep} /> : null,
+  };
 }
