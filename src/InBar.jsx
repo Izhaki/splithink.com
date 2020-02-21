@@ -46,7 +46,7 @@ export default function InBar({ onMessage, onMenuClick, onChar }) {
       <Input left ref={leftRef} onChange={onChar} onFlush={handleMessage(true)} />
 
       <IconButton className={classes.menuButton} onClick={onMenuClick} aria-label="menu">
-        <MenuIcon fontSize="small" />
+        <MenuIcon fontSize="small" style={{ visibility: 'hidden' }} />
       </IconButton>
 
       <Input ref={rightRef} onChange={onChar} onFlush={handleMessage(false)} />

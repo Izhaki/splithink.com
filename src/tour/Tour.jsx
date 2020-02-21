@@ -16,7 +16,7 @@ export default function Tour({ step }) {
       <TourStep show={step === 1} subTitle="(Enter to submit)" left="25%" />
       <TourStep show={step === 2} title="ALSO you" subTitle="write something" left="75%" />
       <TourStep show={step === 3} subTitle="(Enter to submit)" left="75%" />
-      <TourStep show={step === 4} title="Our menu" left="50%" />
+      <TourStep show={step === 4} title="Our menu" left="50%" lift />
     </div>
   );
 }

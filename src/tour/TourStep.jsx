@@ -23,11 +23,11 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function TourStep({ show, title, subTitle, left }) {
+export default function TourStep({ show, title, subTitle, left, lift }) {
   const classes = useStyles();
   return (
     <Fade in={show}>
-      <div className={classes.step} style={{ left }}>
+      <div className={classes.step} style={{ left, bottom: lift ? 50 : undefined }}>
         <div className={classes.title}>{title}</div>
         <div className={classes.subTitle}>{subTitle}</div>
         {title && <Arrow />}
