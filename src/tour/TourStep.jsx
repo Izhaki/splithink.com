@@ -9,10 +9,10 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     alignItems: 'center',
     position: 'absolute',
-    bottom: '100%',
+    bottom: 50,
     minWidth: 120,
     textAlign: 'center',
-    fontFamily: ['Chalkboard SE', 'Comic Neue', 'Comic Sans MS', 'Comic Sans'].join(','),
+    fontFamily: theme.typography.tour.fontFamily,
     transform: `translateX(-50%)`,
   },
   title: {

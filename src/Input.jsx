@@ -8,12 +8,13 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     padding: 0,
     fontSize: 16,
-    fontFamily: theme.typography.fontFamily,
+    fontFamily: theme.typography.message.fontFamily,
   },
   input: {
-    padding: [[6, 18]],
+    padding: [[8, 18, 4]],
     borderRadius: 24,
     backgroundColor: '#f1f3f4',
+    lineHeight: 'normal',
   },
   left: {
     textAlign: 'right',

@@ -28,6 +28,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
   },
   side: {
+    fontFamily: theme.typography.message.fontFamily,
     padding: [[0, theme.spacing(1)]],
     flex: 1,
   },
@@ -43,7 +44,7 @@ export default function Dish({ title, blurb, description, left, right, comment, 
   const classes = useStyles();
 
   const Title = ({ children }) => (
-    <Typography variant="h5" component="h2" align="center">
+    <Typography variant="h5" component="h3" align="center">
       {children}
     </Typography>
   );

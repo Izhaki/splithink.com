@@ -9,9 +9,6 @@ import Menu from './Menu';
 import { useTour } from './tour';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    fontFamily: theme.typography.fontFamily,
-  },
   bottomUp: {
     display: 'flex',
     flexDirection: 'column-reverse',
@@ -25,9 +22,12 @@ const useStyles = makeStyles(theme => ({
   topPanel: {
     // background: `linear-gradient(#ddd, #ccc) no-repeat center/1px 100%`,
   },
+  message: {
+    fontFamily: theme.typography.message.fontFamily,
+    overflowWrap: 'break-word',
+  },
   left: {
     marginRight: '50%',
-    overflowWrap: 'break-word',
     paddingRight: 24,
     textAlign: 'right',
   },
@@ -35,7 +35,6 @@ const useStyles = makeStyles(theme => ({
     marginLeft: '50%',
     maxWidth: '50%',
     paddingLeft: 24,
-    overflowWrap: 'break-word',
     textAlign: 'left',
   },
 }));
@@ -72,7 +71,7 @@ export default function App() {
       <FlexSponge expanded={!menuOpen} className={clsx(classes.topPanel, classes.bottomUp)}>
         <ScrollableFeed className={classes.messages} forceScroll>
           {messages.map(({ text, time, left }) => (
-            <div key={time} className={left ? classes.left : classes.right}>
+            <div key={time} className={clsx(classes.message, left ? classes.left : classes.right)}>
               {text}
             </div>
           ))}

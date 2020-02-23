@@ -29,7 +29,7 @@ const Section = ({ title, children }) => {
   const classes = useStyles();
   return (
     <>
-      <Typography variant="h2" component="h3" className={classes.sectionTitle}>
+      <Typography variant="h2" className={classes.sectionTitle}>
         {title}
       </Typography>
       <Grid container spacing={3}>
@@ -45,9 +45,7 @@ export default function Types() {
   return (
     <div className={classes.root}>
       <div className={classes.header}>
-        <Typography variant="h1" component="h2">
-          Menu
-        </Typography>
+        <Typography variant="h1">Menu</Typography>
         <Typography variant="body1">
           <b>Allergy advice: </b>We <i>do not</i> save anything you write.
         </Typography>

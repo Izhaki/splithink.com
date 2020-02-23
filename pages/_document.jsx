@@ -27,6 +27,14 @@ export default class MyDocument extends Document {
           />
           {/* PWA primary color */}
           <meta name="theme-color" content={theme.palette.primary.main} />
+          <link
+            href="https://fonts.googleapis.com/css?family=Special+Elite&display=swap"
+            rel="stylesheet"
+          />
+          <link
+            href="https://fonts.googleapis.com/css?family=Advent+Pro:400,500&display=swap"
+            rel="stylesheet"
+          />
         </Head>
         <body>
           <Main />
