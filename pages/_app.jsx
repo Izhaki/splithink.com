@@ -20,7 +20,7 @@ export default class MyApp extends App {
     return (
       <>
         <Head>
-          <title>Mindtryst - a mental takeaway</title>
+          <title>Splithink</title>
           <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
         </Head>
         <ThemeProvider theme={theme}>

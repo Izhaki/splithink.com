@@ -3,7 +3,7 @@ import Document, { Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheets } from '@material-ui/core/styles';
 import theme from '../src/theme';
 
-const GA_TRACKING_ID = 'UA-46595622-7';
+const GA_TRACKING_ID = 'UA-46595622-8';
 
 export default class MyDocument extends Document {
   render() {
