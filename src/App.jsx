@@ -1,43 +1,22 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
-import ScrollableFeed from 'react-scrollable-feed';
-import FullHeight from './FullHeight';
-import FlexSponge from './FlexSponge';
-import InBar from './InBar';
-import Menu from './Menu';
+import FullHeight from './layout/FullHeight';
+import FlexSponge from './layout/FlexSponge';
+import InputBar from './chat/InputBar';
+import Messages from './chat/Messages';
+import Menu from './menu/Menu';
 import { useTour } from './tour';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   bottomUp: {
     display: 'flex',
     flexDirection: 'column-reverse',
   },
-  messages: {
-    // ScrollableFeed sets this to 'inherit', which means initial messages
-    // on top appear. Setting to 'auto' will position them at the bottom.
-    height: 'auto',
-    fontSize: 16,
-  },
-  topPanel: {
-    // background: `linear-gradient(#ddd, #ccc) no-repeat center/1px 100%`,
-  },
-  message: {
-    fontFamily: theme.typography.message.fontFamily,
-    overflowWrap: 'break-word',
-  },
-  left: {
-    marginRight: '50%',
-    paddingRight: 24,
-    textAlign: 'right',
-  },
-  right: {
-    marginLeft: '50%',
-    maxWidth: '50%',
-    paddingLeft: 24,
-    textAlign: 'left',
-  },
-}));
+  // topPanel: {
+  //   background: `linear-gradient(#ddd, #ccc) no-repeat center/1px 100%`,
+  // },
+});
 
 export default function App() {
   const classes = useStyles();
@@ -66,16 +45,10 @@ export default function App() {
       <FlexSponge expanded={menuOpen}>
         <Menu />
       </FlexSponge>
-      <InBar onChar={handleChar} onMessage={handleMessage} onMenuClick={handleMenuClick} />
+      <InputBar onChar={handleChar} onMessage={handleMessage} onMenuClick={handleMenuClick} />
       {tour}
       <FlexSponge expanded={!menuOpen} className={clsx(classes.topPanel, classes.bottomUp)}>
-        <ScrollableFeed className={classes.messages} forceScroll>
-          {messages.map(({ text, time, left }) => (
-            <div key={time} className={clsx(classes.message, left ? classes.left : classes.right)}>
-              {text}
-            </div>
-          ))}
-        </ScrollableFeed>
+        <Messages messages={messages} />
       </FlexSponge>
     </FullHeight>
   );
