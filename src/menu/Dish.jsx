@@ -30,7 +30,6 @@ const useStyles = makeStyles(theme => ({
   side: {
     fontFamily: theme.typography.message.fontFamily,
     padding: [[0, theme.spacing(1)]],
-    flex: 1,
   },
   left: {
     textAlign: 'right',

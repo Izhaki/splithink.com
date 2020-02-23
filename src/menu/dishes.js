@@ -15,7 +15,7 @@ export default {
     title: `Dos and Don'ts Egg Bites`,
     blurb: `Get charged for the day`,
     left: `Things you should do`,
-    right: `Things that you shouldn't`,
+    right: `Those you shouldn't`,
     comment: `optional: a chopstick you must break if you don't stick to it`,
   },
   chatdelune: {
