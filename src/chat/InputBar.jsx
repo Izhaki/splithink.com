@@ -33,9 +33,20 @@ const useStyles = makeStyles(theme => ({
     transform: `rotate(180deg)`,
     opacity: 1,
   },
+  '@keyframes blink': {
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+  },
+  lastTourStep: {
+    animationName: '$blink',
+    animationIterationCount: 'infinite',
+    animationDuration: 1600,
+    animationDirection: 'alternate',
+    animationTimingFunction: 'linear',
+  },
 }));
 
-export default function InBar({ menuOpen, onMessage, onMenuClick, onChar }) {
+export default function InBar({ menuOpen, isMenuTourStep, onMessage, onMenuClick, onChar }) {
   const classes = useStyles();
 
   const leftRef = React.useRef();
@@ -63,7 +74,11 @@ export default function InBar({ menuOpen, onMessage, onMenuClick, onChar }) {
       <IconButton className={classes.menuButton} onClick={onMenuClick} aria-label="menu">
         <ExpandLessIcon
           fontSize="small"
-          className={clsx(classes.menuIcon, menuOpen && classes.menuOpen)}
+          className={clsx(
+            classes.menuIcon,
+            menuOpen && classes.menuOpen,
+            isMenuTourStep && classes.lastTourStep,
+          )}
         />
       </IconButton>
 

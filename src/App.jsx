@@ -24,10 +24,11 @@ export default function App() {
   const [messages, setMessages] = React.useState([]);
   const [menuOpen, setMenuOpen] = React.useState(false);
 
-  const { tour, notifyTour } = useTour();
+  const { tourStep, tour, notifyTour } = useTour();
 
   const handleMenuClick = () => {
     setMenuOpen(!menuOpen);
+    notifyTour('menuOpened');
   };
 
   const handleMessage = (text, left) => {
@@ -47,6 +48,7 @@ export default function App() {
       </FlexSponge>
       <InputBar
         menuOpen={menuOpen}
+        isMenuTourStep={tourStep === 4}
         onChar={handleChar}
         onMessage={handleMessage}
         onMenuClick={handleMenuClick}

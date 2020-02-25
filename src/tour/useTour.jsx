@@ -35,6 +35,12 @@ export default function useTour() {
         bumpTourStep();
         break;
       }
+      case 'menuOpened': {
+        if (tourStep === 4) {
+          bumpTourStep();
+        }
+        break;
+      }
       default: {
         throw new Error(`Unknow evetyType: ${eventType}`);
       }
@@ -42,7 +48,7 @@ export default function useTour() {
   };
 
   return {
-    bumpTourStep,
+    tourStep,
     notifyTour,
     tour: tourStep !== COMPLETED ? <Tour step={tourStep} /> : null,
   };
