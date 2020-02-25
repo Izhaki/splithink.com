@@ -1,10 +1,11 @@
 import React from 'react';
+import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Input from './Input';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   inBar: {
     display: 'flex',
     padding: 6,
@@ -17,10 +18,24 @@ const useStyles = makeStyles({
     '&:hover': {
       backgroundColor: '#eee',
     },
+    '&:hover $menuIcon': {
+      opacity: 1,
+    },
   },
-});
+  menuIcon: {
+    opacity: 0,
+    transform: `rotate(0deg)`,
+    transition: theme.transitions.create(['background-color', 'transform', 'opacity'], {
+      duration: 2000,
+    }),
+  },
+  menuOpen: {
+    transform: `rotate(180deg)`,
+    opacity: 1,
+  },
+}));
 
-export default function InBar({ onMessage, onMenuClick, onChar }) {
+export default function InBar({ menuOpen, onMessage, onMenuClick, onChar }) {
   const classes = useStyles();
 
   const leftRef = React.useRef();
@@ -46,7 +61,10 @@ export default function InBar({ onMessage, onMenuClick, onChar }) {
       <Input left ref={leftRef} onChange={onChar} onFlush={handleMessage(true)} />
 
       <IconButton className={classes.menuButton} onClick={onMenuClick} aria-label="menu">
-        <MenuIcon fontSize="small" style={{ visibility: 'hidden' }} />
+        <ExpandLessIcon
+          fontSize="small"
+          className={clsx(classes.menuIcon, menuOpen && classes.menuOpen)}
+        />
       </IconButton>
 
       <Input ref={rightRef} onChange={onChar} onFlush={handleMessage(false)} />

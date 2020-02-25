@@ -45,7 +45,12 @@ export default function App() {
       <FlexSponge expanded={menuOpen}>
         <Menu />
       </FlexSponge>
-      <InputBar onChar={handleChar} onMessage={handleMessage} onMenuClick={handleMenuClick} />
+      <InputBar
+        menuOpen={menuOpen}
+        onChar={handleChar}
+        onMessage={handleMessage}
+        onMenuClick={handleMenuClick}
+      />
       {tour}
       <FlexSponge expanded={!menuOpen} className={clsx(classes.topPanel, classes.bottomUp)}>
         <Messages messages={messages} />
