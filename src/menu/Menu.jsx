@@ -1,6 +1,7 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import AllergyAdvice from './AllergyAdvice';
 import Grid from '@material-ui/core/Grid';
 import Dish from './Dish';
 import dishes from './dishes';
@@ -10,12 +11,12 @@ const useStyles = makeStyles({
     width: '100%',
     borderTop: '20px solid #333',
     borderBottom: '20px solid #333',
-    padding: [[4, 0]],
   },
   header: {
     borderTop: '4px solid #333',
     borderBottom: '4px solid #333',
     padding: [[0, 20]],
+    margin: [[4, 0]],
   },
   section: {
     padding: 20,
@@ -46,10 +47,10 @@ export default function Types() {
     <div className={classes.root}>
       <div className={classes.header}>
         <Typography variant="h1">Menu</Typography>
-        <Typography variant="body1">
-          <b>Allergy advice: </b>We <i>do not</i> save anything you write.
-        </Typography>
       </div>
+
+      <AllergyAdvice />
+
       <div className={classes.section}>
         <Section title="Starters">
           <Dish {...dishes.alterEgo} />
